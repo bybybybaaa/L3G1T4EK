@@ -3,11 +3,21 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Безопасность в сети",
   description: "Практический практикум",
+
+  // Настройка фавикона для вкладки браузера
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.jpg' }]
+  ],
+
   themeConfig: {
-    // Это верхнее меню
+    // Логотип в верхнем левом углу
+    logo: '/favicon.jpg',
+
+    // ЭТО ВЕРХНЕЕ МЕНЮ — ТУТ МЫ МЕНЯЕМ ССЫЛКУ
     nav: [
       { text: 'Главная', link: '/' },
-      { text: 'Тренажер фишинга', link: '/phishing-quiz' }
+      // Текст меняем на «Отдельные темы», а в link добавляем наш якорь #topics
+      { text: 'Отдельные темы', link: '/#topics' }
     ],
 
     // Это боковое меню (Sidebar)
@@ -21,6 +31,7 @@ export default defineConfig({
       {
         text: 'Интерактивное обучение',
         items: [
+          { text: '🛡️ Чек-лист защиты', link: '/checklist' },
           { text: '🚀 Проверка пароля', link: '/pass-check' },
           { text: '🕵️ Тренажер фишинга', link: '/phishing-quiz' },
         ]
