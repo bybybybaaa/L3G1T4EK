@@ -14,7 +14,6 @@ layout: home
   </div>
 </div>
 
-<!-- Контейнер с id для навигации -->
 <div id="topics" class="tabs-container">
   <h2 class="tabs-label">Отдельные темы:</h2>
 
@@ -26,7 +25,8 @@ layout: home
       :class="{ active: activeTab === index }"
       @click="activeTab = index"
     >
-      <span class="tab-icon">{{ tab.icon }}</span>
+      <img v-if="tab.icon.startsWith('/')" :src="tab.icon" class="tab-icon-img" />
+      <span v-else class="tab-icon">{{ tab.icon }}</span>
       <span class="tab-title">{{ tab.title }}</span>
     </div>
   </div>
@@ -46,44 +46,33 @@ const activeTab = ref(0)
 
 const tabs = [
   { 
-    title: "Проверка паролей", 
-    icon: "🔐", 
-    details: "Узнай, насколько надёжен твой пароль. Наш сканер проверяет пароли по базам утечек и сложности взлома.",
-    link: "/pass-check"
+    title: "Telegram", 
+    icon: "/Telegram_logo.png",
+    details: "Настройка конфиденциальности, защита от спама и проверка активных сессий в самом популярном мессенджере.",
+    link: "/tg-info" 
   },
   { 
-    title: "Тренажер L3G1T4EK", 
-    icon: "🕵️‍♂️", 
-    details: "Практическая отработка навыков: научись отличать реальные сообщения от фишинговых атак.",
-    link: "/phishing-quiz" 
+    title: "ВКонтакте", 
+    icon: "/vk-logo.png", 
+    details: "Как скрыть свои данные от посторонних, защитить профиль от взлома и правильно настроить двухфакторную аутентификацию.",
+    link: "/vk-info"
   },
   { 
-    title: "Гайды по защите", 
-    icon: "🛡️", 
-    details: "Пошаговые инструкции по настройке приватности в Telegram и VK для студентов УрФУ.",
-    link: "#" 
-  },
-  { 
-    title: "Чек-лист защиты", 
-    icon: "✅", 
-    details: "Проверь свои аккаунты по списку критических настроек безопасности.",
-    link: "/checklist" 
+    title: "MAX", 
+    icon: "/logo-max.webp", 
+    details: "Специфические советы по безопасности для учебной платформы нашего университета. Защита личного кабинета и данных.",
+    link: "/max-info" 
   }
 ]
 </script>
 
 <style scoped>
-/* УБИРАЕМ ОГРАНИЧЕНИЯ VITEPRESS */
-:deep(.VPContent) {
-  padding-top: 0 !important;
-}
+/* СБРОС СТАНДАРТНЫХ ОТСТУПОВ */
+:deep(.VPContent) { padding-top: 0 !important; }
+:deep(.VPHome) { margin-top: 0 !important; padding-top: 0 !important; }
+:deep(.VPHero) { display: none !important; }
 
-:deep(.VPHome) {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* ПОЛНОЭКРАННЫЙ БЛОК */
+/* ГЛАВНЫЙ ЭКРАН */
 .hero-fullscreen {
   position: relative;
   width: 100vw;
@@ -96,7 +85,6 @@ const tabs = [
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   background-image: url('/background.jpg');
   background-size: cover;
   background-position: center;
@@ -104,60 +92,49 @@ const tabs = [
 
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; width: 100%; height: 100%;
   background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
   z-index: 1;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 20px;
-}
+.hero-content { position: relative; z-index: 2; text-align: center; padding: 20px; }
 
 .hero-title {
   font-size: clamp(4.5rem, 15vw, 8rem);
   font-weight: 900;
   font-family: 'Courier New', monospace;
-  color: #3b82f6; /* Немного темнее основного синего для заголовка */
-  background: none;
-  -webkit-text-fill-color: #3b82f6;
-  text-shadow: 
-    -2px -2px 0 #000,  
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0 0 20px rgba(59, 130, 246, 0.6),
-     0 0 40px rgba(0, 0, 0, 1);
-  margin-bottom: 10px;
-  letter-spacing: -1px;
+  color: #3b82f6;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0 0 20px rgba(59, 130, 246, 0.6);
   line-height: 1;
+  margin-bottom: 15px;
 }
 
+/* ЖИРНЫЙ ПОДЗАГОЛОВОК */
 .hero-subtitle {
   font-size: clamp(1.8rem, 6vw, 3rem);
   color: #fff;
-  font-weight: 800;
+  font-weight: 900; 
   margin-bottom: 15px;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 1), 0 0 25px rgba(59, 130, 246, 0.4);
 }
 
+/* ЖИРНЫЙ ТЕГЛАЙН С ОБВОДКОЙ */
 .hero-tagline {
-  font-size: 1.5rem; 
-  font-weight: 700; 
+  font-size: 1.6rem; 
+  font-weight: 800; 
   color: #ffffff;
   margin-bottom: 45px;
   max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 1.4;
   text-shadow: 
-    0px 2px 4px rgba(0, 0, 0, 0.9), 
-    0px 0px 10px rgba(0, 0, 0, 0.5);
+    2px 2px 4px rgba(0, 0, 0, 1), 
+    -1px -1px 0 rgba(0, 0, 0, 1),
+    1px -1px 0 rgba(0, 0, 0, 1),
+    -1px 1px 0 rgba(0, 0, 0, 1),
+    1px 1px 0 rgba(0, 0, 0, 1);
   letter-spacing: 0.5px;
-  opacity: 1 !important;
 }
 
 .action-btn {
@@ -168,8 +145,8 @@ const tabs = [
   border-radius: 50px;
   font-weight: bold;
   font-size: 1.2rem;
-  transition: all 0.3s ease;
   box-shadow: 0 0 20px rgba(52, 81, 178, 0.5);
+  transition: 0.3s;
 }
 
 .action-btn:hover {
@@ -186,29 +163,8 @@ const tabs = [
   background: var(--vp-c-bg-soft); 
   padding: 40px 30px; 
   border-radius: 24px;
-  backdrop-filter: blur(20px);
   border: 1px solid var(--vp-c-divider);
-  scroll-margin-top: 100px;
-}
-
-.tabs-label {
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  margin-bottom: 25px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.tabs-label::after {
-  content: '';
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: #3451b2; /* Подчеркивание синим */
-  margin: 10px auto 0;
-  box-shadow: 0 0 10px rgba(52, 81, 178, 0.6);
+  backdrop-filter: blur(20px);
 }
 
 .tabs-header {
@@ -219,42 +175,38 @@ const tabs = [
 
 .tab-item {
   flex: 1;
-  padding: 15px;
+  padding: 20px 10px;
   cursor: pointer;
   border-radius: 16px;
   background: var(--vp-c-default-soft);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   transition: 0.3s;
-  color: var(--vp-c-text-2);
+  min-height: 120px;
+  border: 1px solid transparent;
 }
 
 .tab-item.active {
   background: rgba(52, 81, 178, 0.1);
   border: 1px solid #3451b2;
-  color: #3451b2; /* Активный текст синим */
+  color: #3451b2;
 }
 
-.tab-icon { font-size: 2rem; }
-
-.tab-content h3 { 
-  color: #3451b2; /* Заголовок контента синим */
+/* ИКОНКИ */
+.tab-icon-img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  margin-bottom: 12px;
 }
 
-.tab-content p {
-  color: var(--vp-c-text-1);
+.tab-title {
+  font-weight: 600;
+  font-size: 1rem;
 }
 
-.tab-link { 
-  color: #3451b2; 
-  text-decoration: none; 
-  font-weight: bold; 
-}
-
-.tab-link:hover {
-  color: #3b82f6;
-}
-
-:deep(.VPHero) { display: none !important; }
+.tab-content h3 { color: #3451b2; margin-top: 0; }
+.tab-link { color: #3451b2; font-weight: bold; text-decoration: none; }
 </style>
