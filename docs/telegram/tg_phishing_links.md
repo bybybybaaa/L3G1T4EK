@@ -1,13 +1,15 @@
 ---
 layout: page
 ---
-
+<br>
 <a href="/tg-info" class="back-link">← Назад к Telegram</a>
 
-<p style="font-size: 1.7rem; font-weight: 700;">
-  🎣 Фишинговые ссылки: Как распознать ловушку
-</p>
-
+<h1 style="font-size: 1.7rem; font-weight: 700; line-height: 1.3; margin-bottom: 20px;">
+  <span>🎣</span>
+  <span style="background: linear-gradient(120deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+    Фишинговые ссылки: Как распознать ловушку
+  </span>
+</h1>
 <br>
 
 <p style="font-size: 1.2rem; font-weight: 500;">

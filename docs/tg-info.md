@@ -32,7 +32,7 @@ layout: page
   </a>
 
   <!-- Ветка 2 -->
-  <a href="/telegram/sessions" class="topic-card coming-soon">
+  <a href="/telegram/act_sessions" class="topic-card">
     <div class="topic-icon">📱</div>
     <div class="topic-content">
       <h3>Активные сессии</h3>
