@@ -42,7 +42,7 @@ layout: page
   </a>
 
   <!-- Ветка 3 -->
-  <a href="/telegram/privacy" class="topic-card coming-soon">
+  <a href="/telegram/privacy" class="topic-card">
     <div class="topic-icon">🕵️</div>
     <div class="topic-content">
       <h3>Настройки приватности</h3>
