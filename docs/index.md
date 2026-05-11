@@ -2,48 +2,44 @@
 layout: home
 ---
 
-<div class="hero-fullscreen">
-  <div class="hero-overlay"></div>
+<div class="hero-clean">
   <div class="hero-content">
-    <h1 class="hero-title">L3G1T4EK</h1>
-    <p class="hero-subtitle">Безопасность в соцсетях</p>
-    <p class="hero-tagline">Интерактивный курс по защите аккаунтов</p>
-    <div class="hero-actions">
-      <a href="/tg-info" class="action-btn brand">Начать обучение 🚀</a>
+    <div class="main-header">
+      <h1 class="hero-title">L3G1T4EK</h1>
+      <p class="hero-subtitle">Безопасность в соцсетях</p>
+      <p class="hero-tagline">Интерактивный курс по защите аккаунтов</p>
+      <div class="hero-actions">
+        <a href="/tg-info" class="action-btn">Начать обучение →</a>
+      </div>
     </div>
-  </div>
-</div>
-
-<div id="topics" class="tabs-container">
-  <h2 class="tabs-label">Отдельные темы:</h2>
-
-  <div class="tabs-header">
-    <div 
-      v-for="(tab, index) in tabs" 
-      :key="index"
-      class="tab-item"
-      :class="{ active: activeTab === index }"
-      @click="activeTab = index"
-    >
-      <img v-if="tab.icon.startsWith('/')" :src="tab.icon" class="tab-icon-img" />
-      <span v-else class="tab-icon">{{ tab.icon }}</span>
-      <span class="tab-title">{{ tab.title }}</span>
+    <div id="topics" class="tabs-container">
+      <p class="choose-text">Если хотите выбрать определенную тему:</p>
+      <div class="tabs-header">
+        <div 
+          v-for="(tab, index) in tabs" 
+          :key="index"
+          class="tab-item"
+          :class="{ active: activeTab === index }"
+          @click="activeTab = index"
+        >
+          <img v-if="tab.icon.startsWith('/')" :src="tab.icon" class="tab-icon-img" />
+          <span v-else class="tab-icon">{{ tab.icon }}</span>
+          <span class="tab-title">{{ tab.title }}</span>
+        </div>
+      </div>
+      <div class="tab-content">
+        <h3>{{ tabs[activeTab].title }}</h3>
+        <p>{{ tabs[activeTab].details }}</p>
+        <a v-if="tabs[activeTab].link !== '#'" :href="tabs[activeTab].link" class="tab-link">Перейти к модулю →</a>
+        <span v-else class="coming-soon">Раздел в разработке...</span>
+      </div>
     </div>
-  </div>
-
-  <div class="tab-content">
-    <h3>{{ tabs[activeTab].title }}</h3>
-    <p>{{ tabs[activeTab].details }}</p>
-    <a v-if="tabs[activeTab].link !== '#'" :href="tabs[activeTab].link" class="tab-link">Перейти к модулю →</a>
-    <span v-else class="coming-soon">Раздел в разработке...</span>
   </div>
 </div>
 
 <script setup>
 import { ref } from 'vue'
-
 const activeTab = ref(0)
-
 const tabs = [
   { 
     title: "Telegram", 
@@ -67,146 +63,113 @@ const tabs = [
 </script>
 
 <style scoped>
-/* СБРОС СТАНДАРТНЫХ ОТСТУПОВ */
+/* СБРОС СТИЛЕЙ VITEPRESS */
 :deep(.VPContent) { padding-top: 0 !important; }
-:deep(.VPHome) { margin-top: 0 !important; padding-top: 0 !important; }
+:deep(.VPHome) { background: #ffffff !important; }
 :deep(.VPHero) { display: none !important; }
 
-/* ГЛАВНЫЙ ЭКРАН */
-.hero-fullscreen {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  margin-top: -var(--vp-nav-height); 
+.hero-clean {
+  background: #ffffff;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-image: url('/background.jpg');
-  background-size: cover;
-  background-position: center;
+  padding-top: 80px;
+  color: #1a1a1a;
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
-  z-index: 1;
+.hero-content {
+  max-width: 900px;
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
 }
-
-.hero-content { position: relative; z-index: 2; text-align: center; padding: 20px; }
 
 .hero-title {
-  font-size: clamp(4.5rem, 15vw, 8rem);
-  font-weight: 900;
-  font-family: 'Courier New', monospace;
-  color: #3b82f6;
-  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0 0 20px rgba(59, 130, 246, 0.6);
-  line-height: 1;
-  margin-bottom: 15px;
+  font-size: 4rem;
+  font-weight: 800;
+  color: #000;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
 }
 
-/* ЖИРНЫЙ ПОДЗАГОЛОВОК */
 .hero-subtitle {
-  font-size: clamp(1.8rem, 6vw, 3rem);
-  color: #fff;
-  font-weight: 900; 
-  margin-bottom: 15px;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 1), 0 0 25px rgba(59, 130, 246, 0.4);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
 }
 
-/* ЖИРНЫЙ ТЕГЛАЙН С ОБВОДКОЙ */
 .hero-tagline {
-  font-size: 1.6rem; 
-  font-weight: 800; 
-  color: #ffffff;
-  margin-bottom: 45px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.4;
-  text-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 1), 
-    -1px -1px 0 rgba(0, 0, 0, 1),
-    1px -1px 0 rgba(0, 0, 0, 1),
-    -1px 1px 0 rgba(0, 0, 0, 1),
-    1px 1px 0 rgba(0, 0, 0, 1);
-  letter-spacing: 0.5px;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 40px;
 }
 
 .action-btn {
-  padding: 18px 40px;
-  background: #3451b2;
-  color: white;
+  display: inline-block;
+  padding: 14px 32px;
+  background: #7c4dff; /* Фиолетовый акцент как на твоем скрине */
+  color: #fff !important;
+  border-radius: 12px;
+  font-weight: 600;
   text-decoration: none;
-  border-radius: 50px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  box-shadow: 0 0 20px rgba(52, 81, 178, 0.5);
-  transition: 0.3s;
+  transition: all 0.2s ease;
 }
 
 .action-btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 77, 255, 0.3);
 }
 
-/* КОНТЕЙНЕР ТАБОВ */
+/* СТИЛИ ТАБОВ */
 .tabs-container {
-  max-width: 1100px;
-  margin: -50px auto 100px auto;
-  position: relative;
-  z-index: 10;
-  background: var(--vp-c-bg-soft); 
-  padding: 40px 30px; 
-  border-radius: 24px;
-  border: 1px solid var(--vp-c-divider);
-  backdrop-filter: blur(20px);
+  margin-top: 80px;
+  text-align: left;
+}
+
+.choose-text {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .tabs-header {
   display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
 .tab-item {
   flex: 1;
-  padding: 20px 10px;
-  cursor: pointer;
+  padding: 16px;
+  border: 1px solid #eee;
   border-radius: 16px;
-  background: var(--vp-c-default-soft);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-  min-height: 120px;
-  border: 1px solid transparent;
+  transition: all 0.2s;
+  background: #f9f9f9;
 }
 
 .tab-item.active {
-  background: rgba(52, 81, 178, 0.1);
-  border: 1px solid #3451b2;
-  color: #3451b2;
+  background: #fff;
+  border-color: #7c4dff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* ИКОНКИ */
-.tab-icon-img {
-  width: 45px;
-  height: 45px;
-  object-fit: contain;
-  margin-bottom: 12px;
+.tab-icon-img { width: 32px; height: 32px; margin-bottom: 8px; }
+.tab-title { font-size: 0.9rem; font-weight: 600; color: #444; }
+
+.tab-content {
+  padding: 24px;
+  background: #fcfcfc;
+  border-radius: 16px;
+  border: 1px solid #eee;
 }
 
-.tab-title {
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.tab-content h3 { color: #3451b2; margin-top: 0; }
-.tab-link { color: #3451b2; font-weight: bold; text-decoration: none; }
+.tab-content h3 { margin: 0 0 10px 0; color: #000; }
+.tab-content p { color: #555; line-height: 1.6; margin-bottom: 15px; }
+.tab-link { color: #7c4dff; font-weight: 700; text-decoration: none; }
 </style>

@@ -1,48 +1,19 @@
 import { defineConfig } from 'vitepress'
 
-export default defineConfig({
-  title: "Безопасность в сети",
-  description: "Практический практикум",
-
-  // Настройка фавикона для вкладки браузера
-  head: [
-    ['link', { rel: 'icon', href: '/favicon.jpg' }]
-  ],
-
+export default {
+  // Название вкладки в браузере
+  title: "L3G1T4EK",
+  
   themeConfig: {
-    // Логотип в верхнем левом углу
-    logo: '/favicon.jpg',
+    // 1. Меняем текст в верхнем левом углу
+    logo: '/logo.png', // если есть логотип, если нет — удали эту строку
+    siteTitle: 'L3G1T4EK', 
 
-    // ЭТО ВЕРХНЕЕ МЕНЮ — ТУТ МЫ МЕНЯЕМ ССЫЛКУ
+    // 2. Убираем "Главная" и "Отдельные темы", добавляем "О проекте"
     nav: [
-      { text: 'Главная', link: '/' },
-      // Текст меняем на «Отдельные темы», а в link добавляем наш якорь #topics
-      { text: 'Отдельные темы', link: '/#topics' }
+      { text: 'О проекте', link: '/about' } // убедись, что файл about.md существует
     ],
 
-    // Это боковое меню (Sidebar)
-    sidebar: [
-      {
-        text: 'Введение',
-        items: [
-          { text: 'О проекте', link: '/' },
-        ]
-      },
-      {
-        text: 'Интерактивное обучение',
-        items: [
-          { text: '🛡️ Чек-лист защиты', link: '/checklist' },
-          { text: '🚀 Проверка пароля', link: '/pass-check' },
-          { text: '🕵️ Тренажер фишинга', link: '/phishing-quiz' },
-        ]
-      },
-      {
-        text: 'Платформы',
-        items: [
-          { text: 'Безопасность в MAX', link: '/max-info' },
-          { text: 'Telegram и другие', link: '/other-socials' },
-        ]
-      }
-    ]
+    // 4. (Опционально) Если хочешь убрать поиск, если он есть
   }
-})
+}
