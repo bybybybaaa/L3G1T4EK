@@ -1,19 +1,26 @@
 import { defineConfig } from 'vitepress'
 
-export default {
+export default defineConfig({
   // Название вкладки в браузере
   title: "L3G1T4EK",
   
-  themeConfig: {
-    // 1. Меняем текст в верхнем левом углу
-    logo: '/logo.png', // если есть логотип, если нет — удали эту строку
-    siteTitle: 'L3G1T4EK', 
+  // 1. ПОЛНОСТЬЮ ОТКЛЮЧАЕМ ТЕМНУЮ ТЕМУ (убирает Appearance)
+  appearance: false,
 
-    // 2. Убираем "Главная" и "Отдельные темы", добавляем "О проекте"
+  themeConfig: {
+    // 2. Текст в верхнем левом углу
+    siteTitle: 'Главное меню L3G1T4EK', 
+
+    // 3. Только кнопка "О проекте" в меню
     nav: [
-      { text: 'О проекте', link: '/about' } // убедись, что файл about.md существует
+      { text: 'О проекте', link: '/about' }
     ],
 
-    // 4. (Опционально) Если хочешь убрать поиск, если он есть
+    // 4. Убираем оглавление (On this page) со всех страниц
+    outline: false,
+
+    // 5. Убираем надпись "Edit this page" и время обновления, если они есть
+    editLink: false,
+    lastUpdated: false
   }
-}
+})
